@@ -74,12 +74,6 @@ class Play:
         return MESSAGE_OK
 
 
-class Shutdown:
-    def GET(self):
-        subprocess.call('/sbin/shutdown -h now', shell=True)
-        return MESSAGE_OK
-
-
 class Interface:
     def GET(self):
         page_file = open(os.path.join(PAGE_FOLDER, PAGE_NAME), 'r')
