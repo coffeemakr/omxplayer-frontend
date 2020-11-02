@@ -49,13 +49,14 @@ command_send = {
     'seek+600': '\x1b\x5b\x41'
 }
 
+MESSAGE_OK = '[{\"message\":\"OK\"}]'
 
 class Other:
     def GET(self, name):
         if not name == '':
             if name in command_send:
                 omx_send(command_send[name])
-                return '[{\"message\":\"OK\"}]'
+                return MESSAGE_OK
             else:
                 if os.path.exists(os.path.join(PAGE_FOLDER, name)):
                     page_file = open(os.path.join(PAGE_FOLDER, name), 'r')
@@ -70,13 +71,13 @@ class Other:
 class Play:
     def GET(self, file):
         omx_play(file)
-        return '[{\"message\":\"OK\"}]'
+        return MESSAGE_OK
 
 
 class Shutdown:
     def GET(self):
         subprocess.call('/sbin/shutdown -h now', shell=True)
-        return '[{\"message\":\"OK\"}]'
+        return MESSAGE_OK
 
 
 class Interface:
